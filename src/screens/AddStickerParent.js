@@ -10,13 +10,6 @@ import { DataGrid } from '@mui/x-data-grid';
 import axios from 'axios';
 import { ApiUtils, ApiUtilsImage } from '../Utils/ApiUtils';
 
-// Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
-// const categoryList = [
-//   { label: 'The Shawshank Redemption', year: 1994 },
-//   { label: 'The Godfather', year: 1972 },
-//   { label: '3 Idiots', year: 2009 },
-//   { label: 'Monty Python and the Holy Grail', year: 1975 },
-// ];
 
 const columns = [
 
@@ -78,7 +71,7 @@ const columns = [
 
 
 
-const imageMimeType = /image\/(png|jpg|jpeg)/i;
+const imageMimeType = /image\/(png|jpg|jpeg|webp)/i;
 
 
 const rows = [
@@ -165,7 +158,7 @@ const [stickers,setStickers] = useState([])
 
   const [stickerText,setStickerText] = useState('');
   const [stickerImage,setStickerImage] = useState(null);
-
+  const [categoryImage,setCategoryImage] = useState(null);
 
   const [selectionModel, setSelectionModel] = useState([]);
 
@@ -252,6 +245,25 @@ const [stickers,setStickers] = useState([])
         setUpdatedStickerName(Res.data.result.name)
         setStickerImage(ApiUtilsImage.stickerImage+Res.data.result.image)
         setDeletedStickerName(Res.data.result.name)
+  
+      } catch (error) {
+          console.log(error)
+      }
+
+    }
+
+    const getCategoryImgById = async (id) => {
+     
+      try {
+      console.log(id,"---------------id")
+  
+        const Res = await axios.get(ApiUtils.categoryById+id)
+        console.log(Res,"---------------resultf")
+
+
+        // setUpdatedStickerName(Res.data.result.name)
+        setCategoryImage(ApiUtilsImage.categoryImage+Res.data.result.image)
+        // setDeletedStickerName(Res.data.result.name)
   
       } catch (error) {
           console.log(error)
@@ -547,7 +559,7 @@ const [stickers,setStickers] = useState([])
                 disablePortal
                 value={value}
                 onChange={(event, newValue) => {
-                
+                  getCategoryImgById(newValue._id)
                   getAllStickersBycatid(newValue._id)
                   setValue(newValue);
                   console.log(newValue._id);
@@ -577,6 +589,24 @@ const [stickers,setStickers] = useState([])
               variant="contained" endIcon={<NotificationsNoneIcon />}>    
                 Notifications
             </Button>
+
+
+            <img
+            width={100}
+            // height={80}
+            style={{
+              objectFit: 'contain',
+              alignSelf: 'center',
+              marginLeft: '10px',
+            }}
+
+            // src="http://ec2-13-126-2-209.ap-south-1.compute.amazonaws.com:3000/stickers/1656908135089004.png"
+            // src={"http://ec2-13-126-2-209.ap-south-1.compute.amazonaws.com:3000/stickers/"+params.row.image}
+
+            src={categoryImage}
+
+            alt="Sticker Image" />
+
     
     
     
@@ -1033,7 +1063,7 @@ const [stickers,setStickers] = useState([])
               experimentalFeatures={{ newEditingApi: true }}
               onSelectionModelChange={(newSelectionModel) => {
                 getStickerById(newSelectionModel[0]);
-                console.log(newSelectionModel);
+                console.log(newSelectionModel,'newSelectionModel');
                 setSelectionModel(newSelectionModel);
               }}
               selectionModel={selectionModel}

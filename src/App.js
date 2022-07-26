@@ -26,9 +26,6 @@ function App() {
     
   },[])
 
-
-
-
   const onSubmit = () => {
     console.log(username,password)
     if(username === 'admin' && password === 'admin'){

@@ -1,8 +1,8 @@
-// const serverurl = "http://ec2-13-126-2-209.ap-south-1.compute.amazonaws.com:3000/api/";
-// const imageurl = "http://ec2-13-126-2-209.ap-south-1.compute.amazonaws.com:3000/stickers/";
+const serverurl = "http://ec2-13-126-2-209.ap-south-1.compute.amazonaws.com:3000/api/";
+const imageurl = "http://ec2-13-126-2-209.ap-south-1.compute.amazonaws.com:3000/";
 
-const serverurl = "http://localhost:3000/api/";
-const imageurl = "http://localhost:3000/stickers/";
+// const serverurl = "http://localhost:3000/api/";
+// const imageurl = "http://localhost:3000/";
 
 export const ApiUtils = {
     allcategories:`${serverurl}getAllCategory`,
@@ -18,7 +18,8 @@ export const ApiUtils = {
 }
 
 export const ApiUtilsImage = {
-    stickerImage:`${imageurl}`,
+    stickerImage:`${imageurl}stickers/`,
+    categoryImage:`${imageurl}category/`,
 }
 
 
