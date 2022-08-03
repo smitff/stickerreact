@@ -16,6 +16,7 @@ function App() {
 
   const [username,setUsername] = React.useState('')
   const [password,setPassword] = React.useState('')
+  console.log(process.env.REACT_APP_BASE_URL,'BASE_URL')
 
   useEffect(()=>{
     const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -28,7 +29,8 @@ function App() {
 
   const onSubmit = () => {
     console.log(username,password)
-    if(username === 'admin' && password === 'admin'){
+    console.log(process.env.REACT_APP_BASE_URL,'BASE_URL')
+    if(username === 'admin' && password === '123@123'){
       sessionStorage.setItem("name",username);
       setUsername('')
       setPassword('')

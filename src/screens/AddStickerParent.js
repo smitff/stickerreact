@@ -9,15 +9,9 @@ import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import { DataGrid } from '@mui/x-data-grid';
 import axios from 'axios';
 import { ApiUtils, ApiUtilsImage } from '../Utils/ApiUtils';
-
-
 const columns = [
-
   { field: '_id', headerName: 'ID', width: 100 },
   { field: 'name', headerName: 'Sticker Name', width: 400 },
-  // { field: 'image', headerName: 'Sticker Imagee', width: 0 },
-  
-  
   {
     field: 'imagef',
     headerName: 'Sticker Image',
@@ -101,27 +95,7 @@ const style = {
   p: 4,
 };
 
-// const style = {
-//     position: 'absolute',
-//     top: '50%',
-//     left: '50%',
-//     transform: 'translate(-50%, -50%)',
-//     width: "80%",
-//     height: "40%",
-//     bgcolor: 'background.paper',
-//     border: '2px solid #000',
-//     boxShadow: 24,
-//     p: 4,
-//     display: 'flex',
-//     flexDirection: 'column',
-//     justifyContent: 'center',
-//   };
-
-
 const AddStickerParent = () => {
-
-
-
 const [categoryList,setCategoryList] = useState([
   {
     _id:"",
@@ -134,39 +108,25 @@ const [categoryList,setCategoryList] = useState([
 ]);
 
 const [stickers,setStickers] = useState([])
-
-
-
   const [value, setValue] = React.useState(categoryList[0]);
   const [inputValue, setInputValue] = React.useState('');
-
   const [openAddSticker, setOpenAddSticker] = useState(false);
   const [opendeleteallSticker, setOpenDeleteAllSticker] = useState(false);
   const [openUpdate, setOpenUpdate] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
-
-
   const [newStickerName,setNewStickerName] = useState('');
-
   const [deletedStickerCategory,setDeletedStickerCategory] = useState('');
-
   const [updatedStickerName,setUpdatedStickerName] = useState('');
   const [updatedStickerImage,setUpdatedStickerImage] = useState('');
-
   const [deletedStickerName,setDeletedStickerName] = useState('');
   const [deletedStickerImage,setDeletedStickerImage] = useState('');
-
   const [stickerText,setStickerText] = useState('');
   const [stickerImage,setStickerImage] = useState(null);
   const [categoryImage,setCategoryImage] = useState(null);
-
   const [selectionModel, setSelectionModel] = useState([]);
-
   const [file, setFile] = useState(null);
   const [fileDataURL, setFileDataURL] = useState(null);
   const [loading, setLoading] = useState(false);
-
-  //---------------
   const [snackstatus, setSnackstatus] = useState('');
   const [open, setOpen] = React.useState(false);
 
@@ -182,30 +142,14 @@ const [stickers,setStickers] = useState([])
     setOpen(false);
   };
 
-
-
-  //--------------
-
-    console.log(stickers)
-
-    useEffect(()=>{
-
-    },[])
-
-    useEffect(()=>{
-      getAllCategories()
-    },[])
+  useEffect(()=>{
+    getAllCategories()
+  },[])
 
     const getAllCategories = () => {
       axios.get(ApiUtils.allcategories).then((data) => {
-  
         console.log(data.data.result[0].name);
         setCategoryList(data.data.result)
-        // const maindata = data.data;
-        // console.log(maindata)
-        // setdr(maindata.data[id])
-        // setloading(false)
-  
     }).catch((e) => {
         console.log(e)
     })
@@ -216,17 +160,12 @@ const [stickers,setStickers] = useState([])
         console.log(catid,"---------------id")
     
           const Res = await axios.get(ApiUtils.allstickersbycatid+catid)
-          // console.log(Res)
-          // console.log(Res.data.category[0],"------------------result")
           if(Res.data.category[0].stickers.length>0){
             setStickers(Res.data.category[0].stickers)
           }
           else{
             setStickers([])
           }
-
-          // console.log(Res.data.category[0].stickers,"---------------Reskk")
-          // setStickers(Res.data.category[0].stickers)
         } catch (error) {
             console.log(error)
             setStickers([])
@@ -236,35 +175,19 @@ const [stickers,setStickers] = useState([])
     const getStickerById = async (id) => {
      
       try {
-      console.log(id,"---------------id")
-  
         const Res = await axios.get(ApiUtils.stickerById+id)
-        console.log(Res,"---------------resultf")
-
-
         setUpdatedStickerName(Res.data.result.name)
         setStickerImage(ApiUtilsImage.stickerImage+Res.data.result.image)
         setDeletedStickerName(Res.data.result.name)
-  
       } catch (error) {
           console.log(error)
       }
-
     }
 
     const getCategoryImgById = async (id) => {
-     
       try {
-      console.log(id,"---------------id")
-  
         const Res = await axios.get(ApiUtils.categoryById+id)
-        console.log(Res,"---------------resultf")
-
-
-        // setUpdatedStickerName(Res.data.result.name)
         setCategoryImage(ApiUtilsImage.categoryImage+Res.data.result.image)
-        // setDeletedStickerName(Res.data.result.name)
-  
       } catch (error) {
           console.log(error)
       }
@@ -297,9 +220,6 @@ const [stickers,setStickers] = useState([])
     }, [file]);
 
 
-
-
-
   const changeHandler = (e) => {
     const file = e.target.files[0];
     if (!file.type.match(imageMimeType)) {
@@ -308,17 +228,6 @@ const [stickers,setStickers] = useState([])
     }
     setFile(file);
   }
-
-
-
-
-
-
-    // const [stickerId,setStickerId] = useState();
-    // const [stickerImageId,setStickerImageId] = useState();
-    // const [stickerImageUrl,setStickerImageUrl] = useState('');
-
-
   const onAddSticker = async () => {
     let formData = new FormData();    //formdata object
     if(!value._id){
@@ -371,11 +280,8 @@ const [stickers,setStickers] = useState([])
 
   const onUpdate = async (stickerid)=>{
     console.log(updatedStickerName);
-    // setUpdatedStickerName('');
     console.log(file,"Thisiiiiiiiiis")
-
     let formData = new FormData();    //formdata object
-
     formData.append('name',updatedStickerName );   //append the values with key, value pair
     // formData.append('catId',value._id);
 
@@ -398,8 +304,6 @@ const [stickers,setStickers] = useState([])
     } catch (error) {
       console.log(error)      
     }
-
-    // getAllCategories()
     setUpdatedStickerName("")
     setStickerImage(null)
     setFileDataURL(null)
@@ -409,13 +313,7 @@ const [stickers,setStickers] = useState([])
   const onDelete = async (id)=>{
 
     try {
-
-  
       const Res = await axios.delete(ApiUtils.deleteSticker+id)
-      console.log(Res,"---------------result")
-
-
-      // getAllCategories()
       getAllStickersBycatid(value._id)
       setSnackstatus("Sticker Deleted Successfully")
       handleClick()
@@ -441,22 +339,7 @@ const [stickers,setStickers] = useState([])
   }
 
 
-
-
-
-
-
-
-
-
-
-
-  //states
-  // const [openAddSticker, setopenAddSticker] = useState(false);
-
-
   const actionColumn = [
-    
     {
       field:"action",
       headerName:"Action",
@@ -468,15 +351,7 @@ const [stickers,setStickers] = useState([])
           <Stack
           spacing={5}
           direction="row"
-          // backgroundColor="yellow"
-          // justifyContent="center"
-          // alignItems="center"
-          
           m='auto'
-          // height="100vh"
-          // width={{lg:'50%', md: '50%',sm:'80%', xs: '80%',}}
-          // px={{lg:10,md:10,sm:3,xs:1}}
-        
           >
             <IconButton 
             color='primary'
@@ -500,13 +375,9 @@ const [stickers,setStickers] = useState([])
     }
   ]
 
-
-
-
   return (
 
     <>
-
     {
       loading ?
       (
@@ -522,27 +393,16 @@ const [stickers,setStickers] = useState([])
       ):
       (
         <Box 
-        // backgroundColor="yellow"
         width={{lg:'100%', md: '100%',sm:'100%', xs: '100%',}}
         pl={{lg:"20%",md:"20%",sm:"2%",xs:"2%"}}
         pr={{lg:"2%",md:"2%",sm:"2%",xs:"2%"}}
-        // pt={{lg:8,md:8,sm:8,xs:8}}
         pt={12}
         sx={{
-        //   paddingLeft:'3 x0%'
-          // marginLeft:"20%",
           display: 'flex',
           flexDirection: 'column',
-          // paddingTop: "6rem",
         }}
-        // px={{lg:10,md:10,sm:3,xs:1}}
         >
-    
-    
-          <Box
-          // backgroundColor="yellow"
-        //   height="50vh"
-          
+          <Box 
           width="100%"
           m="auto"
           sx={{
@@ -550,11 +410,8 @@ const [stickers,setStickers] = useState([])
             flexDirection: 'row',
             justifyContent:'flex-start',
             alignItems:'center',
-            
-            // m:"auto",
           }}
           >
-    
           <Autocomplete
                 disablePortal
                 value={value}
@@ -575,17 +432,11 @@ const [stickers,setStickers] = useState([])
                 sx={{ width: 300 }}
                 renderInput={(params) => <TextField {...params} label="Categories" />}
                 getOptionLabel={(option) => option.name}
-      
-    
-    
               />
-    
-    
             <Button 
             sx={{
               ml:2,
             }}
-              // onClick={()=>SendNotification()}
               variant="contained" endIcon={<NotificationsNoneIcon />}>    
                 Notifications
             </Button>
@@ -593,31 +444,17 @@ const [stickers,setStickers] = useState([])
 
             <img
             width={100}
-            // height={80}
             style={{
               objectFit: 'contain',
               alignSelf: 'center',
               marginLeft: '10px',
             }}
-
-            // src="http://ec2-13-126-2-209.ap-south-1.compute.amazonaws.com:3000/stickers/1656908135089004.png"
-            // src={"http://ec2-13-126-2-209.ap-south-1.compute.amazonaws.com:3000/stickers/"+params.row.image}
-
             src={categoryImage}
-
             alt="Sticker Image" />
-
-    
-    
-    
-    
-    
           </Box>
     
           
           <Box
-        // backgroundColor="yellow"
-          // m="auto"
           py={2}
     
           sx={{
@@ -625,14 +462,9 @@ const [stickers,setStickers] = useState([])
             flexDirection:'column',
             height:"80vh",
             width:{lg:'100%', md: '100%',sm:'100%', xs: '100%',},
-            // m:"auto",
-            // justifyContent:'space-between',
-            // alignItems:'center',
-            // padding: 10,
           }}
           >
             <Stack
-            // backgroundColor="yellow" 
             direction="row"
             spacing={2}
             mb={2}
@@ -651,9 +483,6 @@ const [stickers,setStickers] = useState([])
                 Delete All
               </Button>
             </Stack>
-    
-    
-          
             <Modal
             open={openAddSticker}
             onClose={()=>{
@@ -785,8 +614,6 @@ const [stickers,setStickers] = useState([])
             </Box>
           
           </Modal>
-    
-    
           <Modal
             open={opendeleteallSticker}
             onClose={()=>setOpenDeleteAllSticker(false)}
@@ -834,8 +661,6 @@ const [stickers,setStickers] = useState([])
     
             </Box>
           </Modal>
-    
-    
           <Modal
             open={openUpdate}
             onClose={()=>{
@@ -845,7 +670,6 @@ const [stickers,setStickers] = useState([])
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-    
             <Box 
             // sx={...style}
             flexDirection={{
@@ -970,12 +794,7 @@ const [stickers,setStickers] = useState([])
               </Box>
     
             </Box>
-          
-    
-    
-    
           </Modal>
-    
           <Modal
             open={openDelete}
             onClose={()=>setOpenDelete(false)}
@@ -1011,9 +830,6 @@ const [stickers,setStickers] = useState([])
                   disabled
                   value={value.name}
                   label="Selected Category"
-                  // onChange={(e) => setNewStickerName(e.target.value)}
-                  // error={newStickerName === ""}
-                  // helperText={newStickerName === "" ? 'Empty field!' : ''}
                   variant="outlined"
               />
               
@@ -1037,11 +853,6 @@ const [stickers,setStickers] = useState([])
     
             </Box>
           </Modal>
-    
-    
-    
-    
-          
             <DataGrid
               // rows={rows}
               rows={stickers}
@@ -1049,17 +860,7 @@ const [stickers,setStickers] = useState([])
               pageSize={10}
               getRowId={(row) => row._id}
               sx={{
-                // display: 'flex',
-                // justifyContent:'center',
-                // // alignItems:'center',
-                // height:'80vh',
-                // width:"50%",
-                // m:"auto",
-                // backgroundColor:'pink',
               }}
-              // rowsPerPageOptions={[3,5,10]}
-              // checkboxSelection
-              // disableSelectionOnClick
               experimentalFeatures={{ newEditingApi: true }}
               onSelectionModelChange={(newSelectionModel) => {
                 getStickerById(newSelectionModel[0]);
@@ -1082,9 +883,6 @@ const [stickers,setStickers] = useState([])
     
       )
     }
-
-
-
     </>
   )
 }

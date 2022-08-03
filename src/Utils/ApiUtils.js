@@ -1,5 +1,8 @@
-const serverurl = "http://ec2-13-126-2-209.ap-south-1.compute.amazonaws.com:3000/api/";
-const imageurl = "http://ec2-13-126-2-209.ap-south-1.compute.amazonaws.com:3000/";
+// const serverurl = "http://159.65.155.102:8801/stickerapi/";
+// const imageurl = "http://159.65.155.102:8801/stickerapi/";
+
+const serverurl = `${process.env.REACT_APP_BASE_URL}`;
+const imageurl = `${process.env.REACT_APP_IMG_URL}`;
 
 // const serverurl = "http://localhost:3000/api/";
 // const imageurl = "http://localhost:3000/";

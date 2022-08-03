@@ -8,7 +8,7 @@ const Login = () => {
   
   const onSubmit = () => {
     console.log(username,password)
-    if(username === 'admin' && password === 'admin'){
+    if(username === 'admin' && password === '123@123'){
       setUsername('')
       setPassword('')
       // setIsLoggedin(true)

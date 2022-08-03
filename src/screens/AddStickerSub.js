@@ -8,8 +8,6 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import { DataGrid } from '@mui/x-data-grid';
 
-
-// Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 const categoryList = [
   { label: 'The Shawshank Redemption', year: 1994 },
   { label: 'The Godfather', year: 1972 },
@@ -22,7 +20,6 @@ const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
   { field: 'firstName', headerName: 'Sticker Name', width: 130 },
   { field: 'lastName', headerName: 'Sticker Image', width: 130 },
-  
   {
     field: 'fullName',
     headerName: 'Full name',
@@ -65,23 +62,6 @@ const style = {
   p: 4,
 };
 
-// const style = {
-//     position: 'absolute',
-//     top: '50%',
-//     left: '50%',
-//     transform: 'translate(-50%, -50%)',
-//     width: "80%",
-//     height: "40%",
-//     bgcolor: 'background.paper',
-//     border: '2px solid #000',
-//     boxShadow: 24,
-//     p: 4,
-//     display: 'flex',
-//     flexDirection: 'column',
-//     justifyContent: 'center',
-//   };
-
-
 const AddStickerParent = () => {
 
   const actionColumn = [
@@ -93,18 +73,13 @@ const AddStickerParent = () => {
       sortable: false,
       renderCell:()=>{
         return(
-
           <Box
           sx={{
-
           }}
           >
             <img
             src="https://via.placeholder.com/150" alt="Sticker Image" />
-
           </Box>
-        
-          
         )
       }
     },
@@ -119,15 +94,7 @@ const AddStickerParent = () => {
           <Stack
           spacing={5}
           direction="row"
-          // backgroundColor="yellow"
-          // justifyContent="center"
-          // alignItems="center"
-          
           m='auto'
-          // height="100vh"
-          // width={{lg:'50%', md: '50%',sm:'80%', xs: '80%',}}
-          // px={{lg:10,md:10,sm:3,xs:1}}
-        
           >
             <IconButton 
             color='primary'
@@ -151,31 +118,21 @@ const AddStickerParent = () => {
 
   const [value, setValue] = React.useState(categoryList[0]);
   const [inputValue, setInputValue] = React.useState('');
-
   const [openAddSticker, setOpenAddSticker] = useState(false);
   const [opendeleteallSticker, setOpenDeleteAllSticker] = useState(false);
   const [openUpdate, setOpenUpdate] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
-
-
   const [newStickerName,setNewStickerName] = useState('');
   const [deletedStickerCategory,setDeletedStickerCategory] = useState('');
-
   const [updatedStickerName,setUpdatedStickerName] = useState('');
   const [updatedStickerImage,setUpdatedStickerImage] = useState('');
-
   const [deletedStickerName,setDeletedStickerName] = useState('');
   const [deletedStickerImage,setDeletedStickerImage] = useState('');
-
   const [stickerText,setStickerText] = useState('');
   const [stickerImage,setStickerImage] = useState(null);
-
-
   const [selectionModel, setSelectionModel] = useState([]);
-
   const [file, setFile] = useState(null);
   const [fileDataURL, setFileDataURL] = useState(null);
-
 
   const changeHandler = (e) => {
     const file = e.target.files[0];
@@ -208,14 +165,6 @@ const AddStickerParent = () => {
 
   }, [file]);
 
-
-
-
-    // const [stickerId,setStickerId] = useState();
-    // const [stickerImageId,setStickerImageId] = useState();
-    // const [stickerImageUrl,setStickerImageUrl] = useState('');
-
-
   const onAddSticker = () => {
     setOpenAddSticker(false);
   }
@@ -226,7 +175,6 @@ const AddStickerParent = () => {
 
   const onUpdate = ()=>{
     console.log(updatedStickerName);
-    // setUpdatedStickerName('');
     setOpenUpdate(false);
 
   }
@@ -239,46 +187,19 @@ const AddStickerParent = () => {
 
 
 
-
-
-
-
-
-
-
-
-
-  //states
-  // const [openAddSticker, setopenAddSticker] = useState(false);
-
-
-
-
-
   return (
   
     <Box 
-    // backgroundColor="yellow"
     width={{lg:'100%', md: '100%',sm:'100%', xs: '100%',}}
     pl={{lg:"20%",md:"20%",sm:"2%",xs:"2%"}}
     pr={{lg:"2%",md:"2%",sm:"2%",xs:"2%"}}
-    // pt={{lg:8,md:8,sm:8,xs:8}}
     pt={12}
     sx={{
-    //   paddingLeft:'3 x0%'
-      // marginLeft:"20%",
       display: 'flex',
       flexDirection: 'column',
-      // paddingTop: "6rem",
     }}
-    // px={{lg:10,md:10,sm:3,xs:1}}
     >
-
-    
-      <Box
-      // backgroundColor="yellow"
-    //   height="50vh"
-      
+      <Box 
       width="100%"
       m="auto"
       sx={{
@@ -286,100 +207,32 @@ const AddStickerParent = () => {
         flexDirection: 'row',
         justifyContent:'flex-start',
         alignItems:'center',
-        
-        // m:"auto",
       }}
       >
-
             <TextField
           disabled
           value={"For You"}
           label="Parent Category Name"
           variant="outlined"
           />
-      
-
-
         <Button 
         sx={{
           ml:2,
         }}
-          // onClick={()=>SendNotification()}
           variant="contained" endIcon={<NotificationsNoneIcon />}>    
             Notifications
         </Button>
-
-
-
       </Box>
-
-
-
-
-
-      {/* <Modal
-        open={openAddSticker}
-        onClose={()=>setopenAddSticker(false)}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box
-        
-        style={style}
-
-        height="30vh"
-        width="100%"
-        m="auto"
-        sx={{
-        display: 'flex',
-        flexDirection:'column',
-        justifyContent:'space-evenly',
-        // alignItems:'center',
-        // m:"auto",
-        }}>
-
-        <TextField
-            value={stickerText}
-            label="Sticker Name"
-            onChange={(e) => setStickerText(e.target.value)}
-            error={stickerText === ""}
-            helperText={stickerText === "" ? 'Empty field!' : ''}
-            variant="outlined"
-        />
-
-        <input type={'file'} onChange={(e) => setStickerImage(e.target.files[0])} />
-
-        <Button
-        variant='outlined'
-        onClick={() => onSubmit()}
-        >
-            Submit
-        </Button>
-
-        </Box>
-      </Modal> */}
-
-
-{/*  */}
-
       <Box
-    // backgroundColor="yellow"
-      // m="auto"
       py={2}
-
       sx={{
         display: 'flex',
         flexDirection:'column',
         height:"80vh",
         width:{lg:'100%', md: '100%',sm:'100%', xs: '100%',},
-        // m:"auto",
-        // justifyContent:'space-between',
-        // alignItems:'center',
-        // padding: 10,
       }}
       >
         <Stack
-        // backgroundColor="yellow" 
         direction="row"
         spacing={2}
         mb={2}
@@ -398,8 +251,6 @@ const AddStickerParent = () => {
             Delete All
           </Button>
         </Stack>
-
-
       
         <Modal
         open={openAddSticker}
@@ -409,8 +260,6 @@ const AddStickerParent = () => {
       >
         
         <Box 
-        // sx={...style}
-
         flexDirection={{
           xs:'column',
           sm:'column',
@@ -419,26 +268,18 @@ const AddStickerParent = () => {
         }}
         sx={{
           ...style,
-          // backgroundColor: 'pink',
           display: 'flex',
-          // flexDirection:'column',
-          // flexDirection:{{}}
-          // height:"70vh",
           justifyContent:'space-evenly',
           alignItems:'center',
 
         }}>
         
-      
-          
           <Box
           sx={{
             display: 'flex',
             flexDirection:'column',
             height:"70vh",
             justifyContent:'center',
-            // backgroundColor: 'pink',
-            // alignItems:'center',
             width: '60%',  
             
           }}
@@ -457,9 +298,6 @@ const AddStickerParent = () => {
               variant="outlined"
           />
 
-
-              {/* <input type={'file'} onChange={changeHandler}/> */}
-
               <Button
               sx={{
                 mb:5
@@ -475,10 +313,6 @@ const AddStickerParent = () => {
               /> 
               </Button>
 
-              
-
-
-      
           <Button
           variant='contained'
           onClick={() => onAddSticker()}
@@ -504,10 +338,6 @@ const AddStickerParent = () => {
               src={fileDataURL} alt="preview" />
             }
             </p> : null}
-
-          
-
-
           </Box>
 
         </Box>
@@ -524,13 +354,10 @@ const AddStickerParent = () => {
         <Box 
         sx={{
           ...style,
-          // backgroundColor: 'pink',
           display: 'flex',
           flexDirection:'column',
           height:"50vh",
           justifyContent:'space-evenly',
-
-          // alignItems:'flex-start',
 
         }}
         >
@@ -572,8 +399,6 @@ const AddStickerParent = () => {
       >
 
         <Box 
-        // sx={...style}
-
         flexDirection={{
           xs:'column',
           sm:'column',
@@ -582,26 +407,17 @@ const AddStickerParent = () => {
         }}
         sx={{
           ...style,
-          // backgroundColor: 'pink',
           display: 'flex',
-          // flexDirection:'column',
-          // flexDirection:{{}}
-          // height:"70vh",
           justifyContent:'space-evenly',
           alignItems:'center',
 
-        }}>
-        
-      
-          
+        }}>    
           <Box
           sx={{
             display: 'flex',
             flexDirection:'column',
             height:"70vh",
             justifyContent:'center',
-            // backgroundColor: 'pink',
-            // alignItems:'center',
             width: '60%',  
             
           }}
@@ -610,7 +426,6 @@ const AddStickerParent = () => {
           <TextField
               sx={{
                 mb:4,
-
               }}
               value={updatedStickerName}
               label="Updated Sticker Name"
@@ -619,10 +434,6 @@ const AddStickerParent = () => {
               helperText={updatedStickerName === "" ? 'Empty field!' : ''}
               variant="outlined"
           />
-
-
-              {/* <input type={'file'} onChange={changeHandler}/> */}
-
               <Button
               sx={{
                 mb:5
@@ -638,10 +449,6 @@ const AddStickerParent = () => {
               /> 
               </Button>
 
-              
-
-
-      
           <Button
           color="primary"
           variant='contained'
@@ -668,19 +475,10 @@ const AddStickerParent = () => {
               src={fileDataURL} alt="preview" />
             }
             </p> : null}
-
-          
-
-
           </Box>
 
         </Box>
-      
-
-
-
       </Modal>
-
       <Modal
         open={openDelete}
         onClose={()=>setOpenDelete(false)}
@@ -690,12 +488,10 @@ const AddStickerParent = () => {
         <Box   
         sx={{
           ...style,
-          // backgroundColor: 'pink',
           display: 'flex',
           flexDirection:'column',
           height:"50vh",
           justifyContent:'space-evenly',
-          // alignItems:'flex-start',
 
         }}>
 
@@ -704,7 +500,6 @@ const AddStickerParent = () => {
             color:'red',
           }}
           variant='h3'>
-
             Are you sure you want to delete this sticker?
           </Typography>
           
@@ -728,26 +523,13 @@ const AddStickerParent = () => {
         </Box>
       </Modal>
 
-
-
-
-      
         <DataGrid
           rows={rows}
           columns={columns.concat(actionColumn)}
           pageSize={10}
           sx={{
-            // display: 'flex',
-            // justifyContent:'center',
-            // // alignItems:'center',
-            // height:'80vh',
-            // width:"50%",
-            // m:"auto",
-            // backgroundColor:'pink',
           }}
-          // rowsPerPageOptions={[3,5,10]}
           checkboxSelection
-          // disableSelectionOnClick
           experimentalFeatures={{ newEditingApi: true }}
           onSelectionModelChange={(newSelectionModel) => {
             console.log(newSelectionModel);
